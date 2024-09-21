@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Syntax Highlighting with Vim Keybindings - Fullscreen</title>
+
+    <!-- Include CodeMirror CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css"
+    />
+
+    <!-- Include Gruvbox Dark Theme -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/theme/gruvbox-dark.min.css"
+    />
+
+    <!-- Add some custom CSS for fullscreen layout -->
+    <style>
+      /* Make the body and editor fullscreen */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #282828; /* Gruvbox Dark background color */
+      }
+
+      .CodeMirror {
+        height: 100vh; /* Fullscreen height */
+        width: 100vw; /* Fullscreen width */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Textarea that will be replaced with CodeMirror -->
+    <textarea id="code" name="code">
+    <h1>Hello World</h1>
+    </textarea>
+
+    <!-- Include CodeMirror JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
+
+    <!-- Include CodeMirror Modes for HTML, XML, JS, and CSS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/htmlmixed/htmlmixed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/xml/xml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/css/css.min.js"></script>
+
+    <!-- Include CodeMirror Vim Keymap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/keymap/vim.min.js"></script>
+
+    <script>
+      // Initialize CodeMirror on the textarea with Vim keybindings and Gruvbox Dark theme
+      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        mode: "htmlmixed",
+        lineNumbers: true,
+        theme: "gruvbox-dark", // Gruvbox Dark theme
+        keyMap: "vim", // Vim keybindings
+      });
+    </script>
+  </body>
+</html>
