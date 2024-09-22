@@ -1,271 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Best Text Editor!</title>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Best Text Editor!</title>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/theme/gruvbox-dark.min.css"
-    />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css" />
 
-    <noscript>
-      <style>
-        #language-selector,
-        #theme-selector {
-          display: none;
-        }
-      </style>
-    </noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/theme/gruvbox-dark.min.css" />
 
+  <noscript>
     <style>
-      :root {
-        --background-color: #1d2021;
-        --selector-background-color: #3c3836;
-        --select-background-color: #504945;
-        --select-color: #ebdbb2;
-      }
-
-      .gruvbox-dark {
-        --background-color: #1d2021;
-        --selector-background-color: #3c3836;
-        --select-background-color: #504945;
-        --select-color: #ebdbb2;
-      }
-
-      .ctp-mocha {
-        --background-color: #1e1e2e;
-        --selector-background-color: #302d41;
-        --select-background-color: #575268;
-        --select-color: #cdd6f4;
-      }
-
-      html,
-      body {
-        height: 100%;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        background-color: var(--background-color);
-        overflow: hidden;
-      }
-
-      #editor-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-        padding: 20px;
-      }
-
-      #selectors-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 20px;
-        column-gap: 10px;
-      }
-
-      .CodeMirror {
-        height: 75vh;
-        width: 70vw;
-        max-width: 800px;
-        font-size: 0.875rem; /* 14px */
-        border-radius: 5px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-      }
-
       #language-selector,
       #theme-selector {
-        margin-bottom: 20px;
-        background-color: var(--selector-background-color);
-        padding: 10px;
-        border-radius: 5px;
-      }
-
-      #language-selector select,
-      #theme-selector select {
-        background-color: var(--select-background-color);
-        color: var(--select-color);
-        border: none;
-        padding: 5px 10px;
-        font-size: 0.875rem; /* 14px */
-        border-radius: 3px;
-      }
-
-      #language-selector select:focus,
-      #theme-selector select:focus {
-        outline: none;
-        box-shadow: 0 0 0 2px #83a598;
-      }
-
-      div.cm-s-ctp-mocha.CodeMirror {
-        --bg0: #1e1e2e;
-        --bg1: #7f849c;
-        --bg4: #6c7086;
-        --fg: #cdd6f4;
-        --fg3: #a6adc8;
-        --gray: #bac2de;
-        --blue: #89b4fa;
-        --yellow: #f9e2af;
-        --aqua: #89b4fa;
-        --orange: #fab387;
-        --primary-bg: #1e1e2e;
-        --current-line: #313244;
-        --selection: #585b70;
-        --atom: #b4befe;
-        --cursor: #7f849c;
-        --keyword: #f38ba8;
-        --operator: #89dceb;
-        --number: #fab387;
-        --definition: #89b4fa;
-        --string: #a6e3a1;
-      }
-
-      .cm-s-ctp-mocha.CodeMirror,
-      .cm-s-ctp-mocha .CodeMirror-gutters {
-        background-color: var(--primary-bg);
-        color: var(--fg3);
-      }
-
-      .cm-s-ctp-mocha .CodeMirror-gutters {
-        background: var(--primary-bg);
-        border-right: 0px;
-      }
-
-      .cm-s-ctp-mocha .CodeMirror-linenumber {
-        color: var(--bg4);
-      }
-
-      .cm-s-ctp-mocha .CodeMirror-cursor {
-        border-left: 0.0625rem solid var(--fg);
-      }
-
-      .cm-s-ctp-mocha.cm-fat-cursor .CodeMirror-cursor {
-        background-color: var(--cursor) !important;
-      }
-
-      .cm-s-ctp-mocha .cm-animate-fat-cursor {
-        background-color: var(--cursor) !important;
-      }
-
-      .cm-s-ctp-mocha div.CodeMirror-selected {
-        background: var(--selection);
-      }
-
-      .cm-s-ctp-mocha span.cm-meta {
-        color: var(--blue);
-      }
-
-      .cm-s-ctp-mocha span.cm-comment {
-        color: var(--gray);
-      }
-
-      .cm-s-ctp-mocha span.cm-number {
-        color: var(--number);
-      }
-
-      .cm-s-ctp-mocha span.cm-atom {
-        color: var(--atom);
-      }
-
-      .cm-s-ctp-mocha span.cm-keyword {
-        color: var(--keyword);
-      }
-
-      .cm-s-ctp-mocha span.cm-variable {
-        color: var(--fg);
-      }
-
-      .cm-s-ctp-mocha span.cm-variable-2 {
-        color: var(--fg);
-      }
-
-      .cm-s-ctp-mocha span.cm-variable-3,
-      .cm-s-ctp-mocha .cm-s-gruvbox-dark span.cm-type {
-        color: var(--yellow);
-      }
-
-      .cm-s-ctp-mocha span.cm-operator {
-        color: var(--operator);
-      }
-
-      .cm-s-ctp-mocha span.cm-callee {
-        color: var(--fg);
-      }
-
-      .cm-s-ctp-mocha span.cm-def {
-        color: var(--definition);
-      }
-
-      .cm-s-ctp-mocha span.cm-property {
-        color: var(--fg);
-      }
-
-      .cm-s-ctp-mocha span.cm-string {
-        color: var(--string);
-      }
-
-      .cm-s-ctp-mocha span.cm-string-2 {
-        color: var(--aqua);
-      }
-
-      .cm-s-ctp-mocha span.cm-qualifier {
-        color: var(--aqua);
-      }
-
-      .cm-s-ctp-mocha span.cm-attribute {
-        color: var(--aqua);
-      }
-
-      .cm-s-ctp-mocha .CodeMirror-activeline-background {
-        background: var(--current-line);
-      }
-
-      .cm-s-ctp-mocha .CodeMirror-matchingbracket {
-        background: var(--gray);
-        color: var(--bg0) !important;
-      }
-
-      .cm-s-ctp-mocha span.cm-builtin {
-        color: var(--orange);
-      }
-
-      .cm-s-ctp-mocha span.cm-tag {
-        color: var(--orange);
+        display: none;
       }
     </style>
-  </head>
+  </noscript>
 
-  <body class="gruvbox-dark">
-    <div id="editor-container">
-      <div id="selectors-container">
-        <div id="language-selector">
-          <select id="mode-select">
-            <option value="htmlmixed">HTML</option>
-            <option value="javascript">JavaScript</option>
-            <option value="css">CSS</option>
-            <option value="python">Python</option>
-            <option value="xml">XML</option>
-          </select>
-        </div>
-        <div id="theme-selector">
-          <select id="theme-select">
-            <option value="gruvbox-dark">Gruvbox Dark</option>
-            <option value="ctp-mocha">Catppuccino Mocha</option>
-          </select>
-        </div>
+  <style>
+    :root {
+      --background-color: #1d2021;
+      --selector-background-color: #3c3836;
+      --select-background-color: #504945;
+      --select-color: #ebdbb2;
+    }
+
+    .gruvbox-dark {
+      --background-color: #1d2021;
+      --selector-background-color: #3c3836;
+      --select-background-color: #504945;
+      --select-color: #ebdbb2;
+    }
+
+    .ctp-mocha {
+      --background-color: #1e1e2e;
+      --selector-background-color: #302d41;
+      --select-background-color: #575268;
+      --select-color: #cdd6f4;
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--background-color);
+      overflow: hidden;
+    }
+
+    #editor-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 20px;
+    }
+
+    #selectors-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+      column-gap: 10px;
+    }
+
+    .CodeMirror {
+      height: 75vh;
+      width: 70vw;
+      max-width: 800px;
+      font-size: 0.875rem; /* 14px */
+      border-radius: 5px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    }
+
+    #language-selector,
+    #theme-selector {
+      margin-bottom: 20px;
+      background-color: var(--selector-background-color);
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    #language-selector select,
+    #theme-selector select {
+      background-color: var(--select-background-color);
+      color: var(--select-color);
+      border: none;
+      padding: 5px 10px;
+      font-size: 0.875rem; /* 14px */
+      border-radius: 3px;
+    }
+
+    #language-selector select:focus,
+    #theme-selector select:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px #83a598;
+    }
+
+    div.cm-s-ctp-mocha.CodeMirror {
+      --bg0: #1e1e2e;
+      --bg1: #7f849c;
+      --bg4: #6c7086;
+      --fg: #cdd6f4;
+      --fg3: #a6adc8;
+      --gray: #bac2de;
+      --blue: #89b4fa;
+      --yellow: #f9e2af;
+      --aqua: #89b4fa;
+      --orange: #fab387;
+      --primary-bg: #1e1e2e;
+      --current-line: #313244;
+      --selection: #585b70;
+      --atom: #b4befe;
+      --cursor: #7f849c;
+      --keyword: #f38ba8;
+      --operator: #89dceb;
+      --number: #fab387;
+      --definition: #89b4fa;
+      --string: #a6e3a1;
+    }
+
+    .cm-s-ctp-mocha.CodeMirror,
+    .cm-s-ctp-mocha .CodeMirror-gutters {
+      background-color: var(--primary-bg);
+      color: var(--fg3);
+    }
+
+    .cm-s-ctp-mocha .CodeMirror-gutters {
+      background: var(--primary-bg);
+      border-right: 0px;
+    }
+
+    .cm-s-ctp-mocha .CodeMirror-linenumber {
+      color: var(--bg4);
+    }
+
+    .cm-s-ctp-mocha .CodeMirror-cursor {
+      border-left: 1px solid var(--fg);
+    }
+
+    .cm-s-ctp-mocha.cm-fat-cursor .CodeMirror-cursor {
+      background-color: var(--cursor) !important;
+    }
+
+    .cm-s-ctp-mocha .cm-animate-fat-cursor {
+      background-color: var(--cursor) !important;
+    }
+
+    .cm-s-ctp-mocha div.CodeMirror-selected {
+      background: var(--selection);
+    }
+
+    .cm-s-ctp-mocha span.cm-meta {
+      color: var(--blue);
+    }
+
+    .cm-s-ctp-mocha span.cm-comment {
+      color: var(--gray);
+    }
+
+    .cm-s-ctp-mocha span.cm-number {
+      color: var(--number);
+    }
+
+    .cm-s-ctp-mocha span.cm-atom {
+      color: var(--atom);
+    }
+
+    .cm-s-ctp-mocha span.cm-keyword {
+      color: var(--keyword);
+    }
+
+    .cm-s-ctp-mocha span.cm-variable {
+      color: var(--fg);
+    }
+
+    .cm-s-ctp-mocha span.cm-variable-2 {
+      color: var(--fg);
+    }
+
+    .cm-s-ctp-mocha span.cm-variable-3,
+    .cm-s-ctp-mocha .cm-s-gruvbox-dark span.cm-type {
+      color: var(--yellow);
+    }
+
+    .cm-s-ctp-mocha span.cm-operator {
+      color: var(--operator);
+    }
+
+    .cm-s-ctp-mocha span.cm-callee {
+      color: var(--fg);
+    }
+
+    .cm-s-ctp-mocha span.cm-def {
+      color: var(--definition);
+    }
+
+    .cm-s-ctp-mocha span.cm-property {
+      color: var(--fg);
+    }
+
+    .cm-s-ctp-mocha span.cm-string {
+      color: var(--string);
+    }
+
+    .cm-s-ctp-mocha span.cm-string-2 {
+      color: var(--aqua);
+    }
+
+    .cm-s-ctp-mocha span.cm-qualifier {
+      color: var(--aqua);
+    }
+
+    .cm-s-ctp-mocha span.cm-attribute {
+      color: var(--aqua);
+    }
+
+    .cm-s-ctp-mocha .CodeMirror-activeline-background {
+      background: var(--current-line);
+    }
+
+    .cm-s-ctp-mocha .CodeMirror-matchingbracket {
+      background: var(--gray);
+      color: var(--bg0) !important;
+    }
+
+    .cm-s-ctp-mocha span.cm-builtin {
+      color: var(--orange);
+    }
+
+    .cm-s-ctp-mocha span.cm-tag {
+      color: var(--orange);
+    }
+  </style>
+</head>
+
+<body class="gruvbox-dark">
+  <div id="editor-container">
+    <div id="selectors-container">
+      <div id="language-selector">
+        <select id="mode-select">
+          <option value="htmlmixed">HTML</option>
+          <option value="javascript">JavaScript</option>
+          <option value="css">CSS</option>
+          <option value="python">Python</option>
+          <option value="xml">XML</option>
+        </select>
       </div>
-      <textarea id="code" name="code" style="width: 70vw; height: 75vh">
-<!-- Welcome to the best text editor! (written in 1 index.html file) -->
-
+      <div id="theme-selector">
+        <select id="theme-select">
+          <option value="gruvbox-dark">Gruvbox Dark</option>
+          <option value="ctp-mocha">Catppuccin Mocha</option>
+        </select>
+      </div>
+    </div>
+<textarea id="code" name="code">
 <header>
   <h1>🎉 Behold, The One-File Wonder! 🎉</h1>
   <h2>Who needs multiple files when you can cram everything into index.html?</h2>
@@ -295,16 +288,16 @@
 <footer>
   <p>Made with a keyboard, some code, and a dash of caffeine. ☕</p>
 </footer>
-</textarea
-      >
-    </div>
+</textarea>
+  </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/xml/xml.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/javascript/javascript.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/css/css.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/htmlmixed/htmlmixed.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/keymap/vim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/htmlmixed/htmlmixed.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/xml/xml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/javascript/javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/css/css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/python/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/keymap/vim.min.js"></script>
 
     <script>
       var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
