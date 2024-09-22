@@ -16,13 +16,31 @@
     />
 
     <style>
+      :root {
+        --background-color: #1d2021;
+        --selector-background-color: #3c3836;
+        --select-background-color: #504945;
+        --select-color: #ebdbb2;
+      }
+      .gruvbox-dark {
+        --background-color: #1d2021;
+        --selector-background-color: #3c3836;
+        --select-background-color: #504945;
+        --select-color: #ebdbb2;
+      }
+      .ctp-mocha {
+        --background-color: #1e1e2e;
+        --selector-background-color: #302d41;
+        --select-background-color: #575268;
+        --select-color: #cdd6f4;
+      }
       html,
       body {
         height: 100%;
         margin: 0;
         display: flex;
         flex-direction: column;
-        background-color: #1d2021;
+        background-color: var(--background-color);
         overflow: hidden;
       }
 
@@ -55,15 +73,15 @@
       #language-selector,
       #theme-selector {
         margin-bottom: 20px;
-        background-color: #3c3836;
+        background-color: var(--selector-background-color);
         padding: 10px;
         border-radius: 5px;
       }
 
       #language-selector select,
       #theme-selector select {
-        background-color: #504945;
-        color: #ebdbb2;
+        background-color: var(--select-background-color);
+        color: var(--select-color);
         border: none;
         padding: 5px 10px;
         font-size: 14px;
@@ -214,7 +232,7 @@
     </style>
   </head>
 
-  <body>
+  <body class="gruvbox-dark">
     <div id="editor-container">
       <div id="selectors-container">
         <div id="language-selector">
@@ -313,6 +331,7 @@
         .addEventListener('change', function () {
           const selectedTheme = this.value
           editor.setOption('theme', selectedTheme)
+          document.body.className = selectedTheme
         })
     </script>
   </body>
