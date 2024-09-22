@@ -5,21 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Best Text Editor!</title>
 
-    <!-- Include CodeMirror CSS -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css"
     />
 
-    <!-- Include Gruvbox Dark Theme -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/theme/gruvbox-dark.min.css"
     />
 
-    <!-- Add some custom CSS for fullscreen layout -->
     <style>
-      /* Make the body and editor fullscreen */
       html,
       body {
         height: 100%;
@@ -27,40 +23,35 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #282828; /* Gruvbox Dark background color */
+        background-color: #282828;
       }
 
       .CodeMirror {
-        height: 100vh; /* Fullscreen height */
-        width: 100vw; /* Fullscreen width */
+        height: 100vh;
+        width: 100vw;
       }
     </style>
   </head>
   <body>
-    <!-- Textarea that will be replaced with CodeMirror -->
     <textarea id="code" name="code">
-    <header>
-      <h1>Hello World</h1>
-      <h2>Made in 1 index.html file</h2>
-    </header>
+      <!-- Content -->
+      <header>
+        <h1>Hello World</h1>
+        <h2>Made in 1 index.html file</h2>
+      </header>
 
-    <p>This text editor has vim bindings (and commands) with gruvbox colorscheme!</p>
+      <p>This text editor has vim bindings (and commands) with gruvbox colorscheme!</p>
 
-    <footer>
-      <a href="https://github.com/leanghok120/gud-text-editor">Source Code</a>
-    </footer>
+      <footer>
+        <a href="https://github.com/leanghok120/gud-text-editor">Source Code</a>
+      </footer>
     </textarea>
 
-    <!-- Include CodeMirror JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
-
-    <!-- Include CodeMirror Modes for HTML, XML, JS, and CSS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/htmlmixed/htmlmixed.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/xml/xml.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/javascript/javascript.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/css/css.min.js"></script>
-
-    <!-- Include CodeMirror Vim Keymap -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/keymap/vim.min.js"></script>
 
     <script>
@@ -68,8 +59,8 @@
       var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
         mode: "htmlmixed",
         lineNumbers: true,
-        theme: "gruvbox-dark", // Gruvbox Dark theme
-        keyMap: "vim", // Vim keybindings
+        theme: "gruvbox-dark",
+        keyMap: "vim",
       });
     </script>
   </body>
