@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -58,14 +58,14 @@
         justify-content: center;
         align-items: center;
         margin-bottom: 20px;
-        column-gap: 1rem;
+        column-gap: 10px;
       }
 
       .CodeMirror {
         height: 75vh;
         width: 70vw;
         max-width: 800px;
-        font-size: 14px;
+        font-size: 0.875rem; /* 14px */
         border-radius: 5px;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
       }
@@ -84,7 +84,7 @@
         color: var(--select-color);
         border: none;
         padding: 5px 10px;
-        font-size: 14px;
+        font-size: 0.875rem; /* 14px */
         border-radius: 3px;
       }
 
@@ -133,7 +133,7 @@
       }
 
       .cm-s-ctp-mocha .CodeMirror-cursor {
-        border-left: 1px solid var(--fg);
+        border-left: 0.0625rem solid var(--fg);
       }
 
       .cm-s-ctp-mocha.cm-fat-cursor .CodeMirror-cursor {
@@ -289,13 +289,12 @@
   <p>To save your masterpiece to your local machine, press Esc and Ctrl+s.
     Don't forget to question your life choices!
   </p>
-  
+
   <p>
     <em>Disclaimer: No files were harmed in the making of this editor. 
       We can't say the same for our sanity, though.</em>
   </p>
 </footer>
-
 <!-- Made with codemirror -->
       </textarea>
     </div>
@@ -310,29 +309,29 @@
 
     <script>
       // Initialize CodeMirror
-      var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
         lineNumbers: true,
-        theme: 'gruvbox-dark',
-        keyMap: 'vim',
-        mode: 'htmlmixed', // Default to HTML
+        theme: "gruvbox-dark",
+        keyMap: "vim",
+        mode: "htmlmixed", // Default to HTML
         lineWrapping: true,
         autofocus: true,
-      })
+      });
 
       // Event listener for dropdown changes
       document
-        .getElementById('mode-select')
-        .addEventListener('change', function () {
-          editor.setOption('mode', this.value)
-        })
+        .getElementById("mode-select")
+        .addEventListener("change", function () {
+          editor.setOption("mode", this.value);
+        });
 
       document
-        .getElementById('theme-select')
-        .addEventListener('change', function () {
-          const selectedTheme = this.value
-          editor.setOption('theme', selectedTheme)
-          document.body.className = selectedTheme
-        })
+        .getElementById("theme-select")
+        .addEventListener("change", function () {
+          const selectedTheme = this.value;
+          editor.setOption("theme", selectedTheme);
+          document.body.className = selectedTheme;
+        });
     </script>
   </body>
 </html>
