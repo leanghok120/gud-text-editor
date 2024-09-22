@@ -251,7 +251,7 @@
           </select>
         </div>
       </div>
-      <textarea id="code" name="code">
+      <textarea id="code" name="code" style="width: 70vw; height: 75vh">
 <!-- Welcome to the best text editor! (written in 1 index.html file) -->
 
 <header>
@@ -274,64 +274,49 @@
   </p>
 
   <p>
-    Switch languages faster than a chameleon on a disco floor using the 
-    dropdown above. HTML, JS, CSS, Python, XML - we've got 'em all in 
-    one file. Because why not?
-  </p>
-
-  <p>
-    Remember, with great power comes great responsibility. And by 'great power', 
-    we mean 'Vim keybindings'. May your "yap" always be intentional!
+    Switch languages faster than a chameleon changes colors, all while basking 
+    in the cozy glow of the Gruvbox Dark theme (or try Catppuccino Mocha, if you're 
+    feeling fancy).
   </p>
 </main>
 
 <footer>
-  <p>To save your masterpiece to your local machine, press Esc and Ctrl+s.
-    Don't forget to question your life choices!
-  </p>
-
-  <p>
-    <em>Disclaimer: No files were harmed in the making of this editor. 
-      We can't say the same for our sanity, though.</em>
-  </p>
+  <p>Made with a keyboard, some code, and a dash of caffeine. ☕</p>
 </footer>
-<!-- Made with codemirror -->
-      </textarea>
+</textarea
+      >
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/htmlmixed/htmlmixed.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/xml/xml.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/javascript/javascript.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/css/css.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/python/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/htmlmixed/htmlmixed.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/keymap/vim.min.js"></script>
 
     <script>
-      // Initialize CodeMirror
       var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
         lineNumbers: true,
+        mode: "htmlmixed",
         theme: "gruvbox-dark",
         keyMap: "vim",
-        mode: "htmlmixed", // Default to HTML
-        lineWrapping: true,
-        autofocus: true,
+        indentUnit: 4,
+        matchBrackets: true,
+        autoCloseBrackets: true,
       });
 
-      // Event listener for dropdown changes
-      document
-        .getElementById("mode-select")
-        .addEventListener("change", function () {
-          editor.setOption("mode", this.value);
-        });
+      const modeSelect = document.getElementById("mode-select");
+      modeSelect.addEventListener("change", function () {
+        const mode = modeSelect.value;
+        editor.setOption("mode", mode);
+      });
 
-      document
-        .getElementById("theme-select")
-        .addEventListener("change", function () {
-          const selectedTheme = this.value;
-          editor.setOption("theme", selectedTheme);
-          document.body.className = selectedTheme;
-        });
+      const themeSelect = document.getElementById("theme-select");
+      themeSelect.addEventListener("change", function () {
+        const theme = themeSelect.value;
+        document.body.className = theme;
+        editor.setOption("theme", theme);
+      });
     </script>
   </body>
 </html>
