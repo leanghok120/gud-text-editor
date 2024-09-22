@@ -21,47 +21,123 @@
         height: 100%;
         margin: 0;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        background-color: #1d2021;
+        overflow: hidden;
+      }
+
+      #editor-container {
+        display: flex;
+        flex-direction: column;
         align-items: center;
-        background-color: #282828;
+        justify-content: center;
+        height: 100%;
+        padding: 20px;
       }
 
       .CodeMirror {
-        height: 100vh;
-        width: 100vw;
+        height: 75vh;
+        width: 70vw;
+        max-width: 800px;
+        font-size: 14px;
+        border-radius: 5px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      }
+
+      #language-selector {
+        margin-bottom: 20px;
+        background-color: #3c3836;
+        padding: 10px;
+        border-radius: 5px;
+      }
+
+      #language-selector select {
+        background-color: #504945;
+        color: #ebdbb2;
+        border: none;
+        padding: 5px 10px;
+        font-size: 14px;
+        border-radius: 3px;
+      }
+
+      #language-selector select:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px #83a598;
       }
     </style>
   </head>
   <body>
-    <textarea id="code" name="code">
-      <!-- Content -->
-      <header>
-        <h1>Hello World</h1>
-        <h2>Made in 1 index.html file</h2>
-      </header>
+    <div id="editor-container">
+      <div id="language-selector">
+        <select id="mode-select">
+          <option value="htmlmixed">HTML</option>
+          <option value="javascript">JavaScript</option>
+          <option value="css">CSS</option>
+          <option value="python">Python</option>
+          <option value="xml">XML</option>
+        </select>
+      </div>
+      <textarea id="code" name="code">
+        <!-- Best Text Editor! -->
 
-      <p>This text editor has vim bindings (and commands) with gruvbox colorscheme!</p>
+        <header>
+          <h1>Welcome to Gud Editor!</h1>
+          <h2>A Focused Coding Experience</h2>
+        </header>
 
-      <footer>
-        <a href="https://github.com/leanghok120/gud-text-editor">Source Code</a>
-      </footer>
-    </textarea>
+        <main>
+          <h3>Key Features:</h3>
+          <ul>
+            <li>Distraction-free zen mode interface</li>
+            <li>Dynamic language switching (HTML, JS, CSS, Python, XML)</li>
+            <li>Vim keybindings for efficient coding</li>
+            <li>Gruvbox dark theme for reduced eye strain</li>
+          </ul>
+
+          <p>
+            This editor is designed to provide a focused coding environment.
+            Use the dropdown above to switch between languages and experience
+            syntax highlighting tailored to your current task.
+          </p>
+
+          <p>
+            Enjoy the power of Vim commands combined with the simplicity of
+            a zen-like interface. Happy coding!
+          </p>
+        </main>
+
+        <footer>
+          <p>Start typing to replace this placeholder content.</p>
+          <p>Press Esc and type ":w" to save (in Vim mode).</p>
+        </footer>
+      </textarea>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/htmlmixed/htmlmixed.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/xml/xml.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/javascript/javascript.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/css/css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/python/python.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/keymap/vim.min.js"></script>
 
     <script>
-      // Initialize CodeMirror on the textarea with Vim keybindings and Gruvbox Dark theme
+      // Initialize CodeMirror
       var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-        mode: "htmlmixed",
         lineNumbers: true,
         theme: "gruvbox-dark",
         keyMap: "vim",
+        mode: "htmlmixed", // Default to HTML
+        lineWrapping: true,
+        autofocus: true,
       });
+
+      // Event listener for dropdown changes
+      document
+        .getElementById("mode-select")
+        .addEventListener("change", function () {
+          editor.setOption("mode", this.value);
+        });
     </script>
   </body>
 </html>
