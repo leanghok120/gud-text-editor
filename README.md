@@ -8,11 +8,11 @@ Gud is a text editor that's so minimal, it makes Marie Kondo look like a hoarder
 
 ## ✨ Features That'll Knock Your Socks Off
 
-- Zen Mode: So distraction-free, you might forget you're coding
-- Language Switcher: It's like a linguistic mood ring for your code
-- Vim Bindings: For when you want your fingers to do gymnastics
-- Gruvbox Dark Theme: Because staring into the void is cool now
-- One-File Wonder: It's so compact, it makes sardines feel claustrophobic!
+- **Zen Mode**: So distraction-free, you might forget you're coding
+- **Language Switcher**: It's like a linguistic mood ring for your code
+- **Vim Bindings**: For when you want your fingers to do gymnastics
+- **Gruvbox Dark Theme**: Because staring into the void is cool now
+- **One-File Wonder**: Who needs multiple files when you can just stuff everything into one file
 
 ## 🔧 Languages
 
