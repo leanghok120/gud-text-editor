@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -31,18 +31,21 @@
         --select-background-color: #504945;
         --select-color: #ebdbb2;
       }
+
       .gruvbox-dark {
         --background-color: #1d2021;
         --selector-background-color: #3c3836;
         --select-background-color: #504945;
         --select-color: #ebdbb2;
       }
+
       .ctp-mocha {
         --background-color: #1e1e2e;
         --selector-background-color: #302d41;
         --select-background-color: #575268;
         --select-color: #cdd6f4;
       }
+
       html,
       body {
         height: 100%;
@@ -304,28 +307,41 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/keymap/vim.min.js"></script>
 
     <script>
-      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+      var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
         lineNumbers: true,
-        mode: "htmlmixed",
-        theme: "gruvbox-dark",
-        keyMap: "vim",
+        mode: 'htmlmixed',
+        theme: 'gruvbox-dark',
+        keyMap: 'vim',
         indentUnit: 4,
         matchBrackets: true,
         autoCloseBrackets: true,
-      });
+      })
 
-      const modeSelect = document.getElementById("mode-select");
-      modeSelect.addEventListener("change", function () {
-        const mode = modeSelect.value;
-        editor.setOption("mode", mode);
-      });
+      // Mapping of modes to their default content
+      const modeContent = {
+        htmlmixed:
+          "<header>\n  <h1>🎉 Behold, The One-File Wonder! 🎉</h1>\n  <h2>Who needs multiple files when you can cram everything into index.html?</h2>\n</header>\n\n<main>\n  <h3>🚀 Features that'll knock your socks off (if you're not wearing any):</h3>\n  <ul>\n    <li>Zen Mode: So minimalist, it's made in 1 index.html file</li>\n    <li>Language Switcher: It's like a linguistic mood ring for your code</li>\n    <li>Vim Bindings: For when you want your fingers to do gymnastics</li>\n    <li>Gruvbox Dark Theme: Because staring into the void is cool now</li>\n  </ul>\n\n  <p>\n    This entire text editor is squeezed into a single index.html file. \n    It's so compact, it makes sardines feel claustrophobic!\n  </p>\n\n  <p>\n    Switch languages faster than a chameleon on a disco floor using the \n    dropdown above. HTML, JS, CSS, Python, XML - we've got 'em all in \n    one file. Because why not?\n  </p>\n\n  <p>\n    Remember, with great power comes great responsibility. And by 'great power', \n    we mean 'Vim keybindings'. May your \"yap\" always be intentional!\n  </p>\n</main>\n\n<footer>\n  <p>To save your masterpiece to your local machine, press Esc and Ctrl+s.\n    Don't forget to question your life choices!\n  </p>\n\n  <p>\n    <em>Disclaimer: No files were harmed in the making of this editor. \n      We can't say the same for our sanity, though.</em>\n  </p>\n</footer>\n",
+        xml: "<note>\n  <to>Tove</to>\n  <from>Jani</from>\n  <heading>Reminder</heading>\n  <body>Don't forget me this weekend!</body>\n</note>",
+        javascript: 'function greet() {\n  console.log("Hello, World!");\n}',
+        css: 'body {\n  background-color: #f0f0f0;\n  font-family: Arial, sans-serif;\n}',
+        python: 'def greet():\n  print("Hello, World!")',
+      }
 
-      const themeSelect = document.getElementById("theme-select");
-      themeSelect.addEventListener("change", function () {
-        const theme = themeSelect.value;
-        document.body.className = theme;
-        editor.setOption("theme", theme);
-      });
+      // Event listener for mode dropdown changes
+      const modeSelect = document.getElementById('mode-select')
+      modeSelect.addEventListener('change', function () {
+        const selectedMode = this.value
+        editor.setOption('mode', selectedMode)
+        editor.setValue(modeContent[selectedMode] || '')
+      })
+
+      // Event listener for theme dropdown changes
+      const themeSelect = document.getElementById('theme-select')
+      themeSelect.addEventListener('change', function () {
+        const theme = themeSelect.value
+        document.body.className = theme
+        editor.setOption('theme', theme)
+      })
     </script>
   </body>
 </html>
